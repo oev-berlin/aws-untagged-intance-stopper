@@ -1,6 +1,7 @@
 import json
 import boto3
 import sys
+import os
 
 def get_ec2_client(region):
     """ returns an ec2 client in the specified region """
@@ -36,9 +37,9 @@ def get_perm_instances(region):
     response = ec2.describe_instances(
         Filters = [
             {
-                'Name': 'tag:running',
+                'Name': 'tag:' + os.environ['TAG_KEY'],
                 'Values': [
-                    'perm'
+                    os.environ['TAG_VALUE']
                 ]    
             }
         ]
