@@ -12,7 +12,7 @@ Metadata:
     LicenseUrl: LICENSE.txt
     ReadmeUrl: README.md
     Labels: ['shutdown','untagged','ec2']
-    SemanticVersion: 1.0
+    SemanticVersion: "0.0.2"
     SourceCodeUrl: https://github.com/oev-berlin/aws-untagged-intance-stopper
     HomePageUrl: https://github.com/oev-berlin/aws-untagged-intance-stopper
 Parameters:
