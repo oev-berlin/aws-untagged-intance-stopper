@@ -1,0 +1,38 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Function to shutdown all untagged instances in all regions
+
+Globals:
+  Function:
+    Timeout: 600
+
+Resources:
+  ShutdownUntaggedInstances:
+    Type: AWS::Serverless::Function 
+    Properties:
+      CodeUri: shutdown_untagged/
+      Handler: app.lambda_handler
+      Runtime: python3.8
+      Policies:
+      - Statement:
+        - Sid: EC2DescribeRegions
+          Effect: Allow
+          Action:
+          - ec2:DescribeRegions
+          - ec2:DescribeInstances
+          - ec2:StopInstances
+          Resource: '*'
+      Events:
+        CheckWebsiteScheduledEvent:
+          Type: Schedule
+          Properties:
+            Schedule: cron(0 19 * * ? *)
+
+Outputs:
+  ShutdownUntaggedInstances:
+    Description: "Hello World Lambda Function ARN"
+    Value: !GetAtt ShutdownUntaggedInstances.Arn
+  ShutdownUntaggedInstancesIamRole:
+    Description: "Implicit IAM Role created for Hello World function"
+    Value: !GetAtt ShutdownUntaggedInstancesRole.Arn

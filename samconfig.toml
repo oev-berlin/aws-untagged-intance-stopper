@@ -1,0 +1,10 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "automated-instances-shutdowner"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-1scn50ipzr2ja"
+s3_prefix = "automated-instances-shutdowner"
+region = "eu-central-1"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
